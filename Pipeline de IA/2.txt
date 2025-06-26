@@ -1,3 +1,21 @@
+“Data augmentation” (aumento de dados) é uma técnica usada principalmente em aprendizado de máquina e visão computacional para aumentar a quantidade e a variedade dos dados de treinamento, sem precisar coletar mais dados reais. Basicamente, ela gera versões modificadas dos dados originais para que o modelo aprenda melhor e fique mais robusto.
+
+Por exemplo, em imagens, a data augmentation pode incluir:
+
+Rotacionar a imagem
+
+Espelhar (flip) horizontal ou vertical
+
+Alterar brilho, contraste ou cor
+
+Adicionar ruído
+
+Cortar ou ampliar partes da imagem
+
+Isso ajuda o modelo a generalizar melhor, evitando que ele aprenda apenas características específicas dos dados originais e, assim, melhorar a performance em dados novos.
+
+
+
 1. Ajuda a prevenir overfitting
 Quando o modelo vê apenas um número limitado de imagens, pode memorizar os exemplos em vez de aprender padrões generalizáveis.
 

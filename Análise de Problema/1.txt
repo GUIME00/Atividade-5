@@ -9,7 +9,8 @@ Se o treinamento está levando muitos dias, provavelmente o gargalo está na GPU
 A CPU normalmente não é o gargalo principal na parte computacional do treinamento; ela pode ser gargalo em pré-processamento ou carregamento de dados, mas o “coração” do treinamento roda na GPU.
 
 
-timizações na programação da GPU para acelerar o treinamento
+Otimizações na programação da GPU para acelerar o treinamento
+
 Uso de precisão mista (Mixed Precision)
 
 Usar tipos de dados de menor precisão (ex: float16 em vez de float32) para acelerar operações nos Tensor Cores, reduzindo uso de memória e aumentando throughput.
