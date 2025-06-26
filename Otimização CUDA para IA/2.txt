@@ -1,4 +1,7 @@
-Vantagens da Precisão Mista
+    O que é precisão mista?
+Precisão mista é uma técnica que utiliza diferentes formatos de precisão numérica durante o treinamento de redes neurais, combinando principalmente números em ponto flutuante de 16 bits (FP16) e ponto flutuante de 32 bits (FP32), ao invés de usar só FP32, que é o padrão tradicional.
+
+    Vantagens da Precisão Mista
 Maior Velocidade de Treinamento
 
 GPUs modernas (como NVIDIA Volta, Turing, Ampere e Hopper) têm núcleos especializados, como os Tensor Cores, que são otimizados para operações com float16 (ou TF32, BF16).
