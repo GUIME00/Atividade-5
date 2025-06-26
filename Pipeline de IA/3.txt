@@ -1,0 +1,44 @@
+| Aspecto                    | Treinamento                                                                         | Inferência                                                   |
+| -------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Objetivo                   | Ajustar os parâmetros do modelo (pesos) para aprender a tarefa                      | Usar o modelo treinado para fazer previsões em novos dados   |
+| Operações-chave            | Forward pass + cálculo da perda + backward pass (gradientes) + atualização de pesos | Apenas forward pass (propagação direta da entrada pela rede) |
+| Complexidade computacional | Alta (especialmente o backward pass)                                                | Geralmente menor (sem retropropagação)                       |
+| Uso de memória             | Maior (armazenamento de ativação para backprop, gradientes)                         | Menor (somente ativação para forward)                        |
+
+
+
+    Treinamento
+
+Intensivo computacionalmente: O backward pass e a atualização de pesos demandam muita computação.
+
+Uso pesado da memória: Precisam armazenar as ativações intermediárias para calcular gradientes.
+
+Precisão mista frequentemente usada: Para acelerar e reduzir uso de memória.
+
+Execução de operações complexas: Cálculo de gradientes, otimização, e às vezes técnicas como dropout.
+
+   
+   
+    Inferência
+
+Menor demanda computacional: Apenas a passagem para frente, sem cálculo de gradientes.
+
+Uso menor de memória: Não precisa guardar estados para backpropagation.
+
+Pode ser otimizado para velocidade e eficiência: Exemplo: quantização, batch menor ou unitário.
+
+Frequência e latência: Inferência costuma ter requisitos de latência baixa (resposta rápida).
+
+
+| Aspecto                 | Treinamento                                                | Inferência                                                            |
+| ----------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------- |
+| Utilização da GPU       | Muito alta, uso intenso dos núcleos e memória              | Pode ser menor, uso otimizado para baixa latência                     |
+| Otimizações específicas | Precisão mista, memória compartilhada, uso de Tensor Cores | Quantização, batch size 1, kernels especializados para menor latência |
+| Fluxo de dados          | Grandes batches, pipelining, DataLoader assíncrono         | Pode processar um dado por vez, fluxo mais simples                    |
+| Consumo energético      | Alto devido à computação intensa                           | Geralmente menor                                                      |
+
+
+
+Treinamento: GPU trabalha pesado para ajustar o modelo; operações mais complexas e uso elevado de memória.
+
+Inferência: GPU realiza previsões com o modelo pronto, com menos computação e menor uso de memória, frequentemente otimizada para velocidade e eficiência.

@@ -1,0 +1,50 @@
+cuDNN (CUDA Deep Neural Network Library)
+Uma biblioteca desenvolvida pela NVIDIA contendo implementações otimizadas para operações comuns em redes neurais, como:
+
+Convoluções (2D, 3D)
+
+Pooling
+
+Normalização (batch norm, layer norm)
+
+Ativações (ReLU, sigmoid, etc.)
+
+RNNs e transformações
+
+cuBLAS (CUDA Basic Linear Algebra Subroutines)
+Biblioteca de operações de álgebra linear básica aceleradas por GPU, incluindo:
+
+Multiplicação de matrizes (GEMM)
+
+Vetor-matriz e vetor-vetor
+
+Fatorações e soluções de sistemas lineares
+
+Desempenho extremo e uso de hardware especializado
+As bibliotecas são otimizadas ao nível do hardware, aproveitando recursos como:
+
+Tensor Cores (para operações em precisão mista)
+
+Pipelines de memória otimizados
+
+Elas são muito mais rápidas do que implementações manuais em CUDA ou frameworks de alto nível.
+
+2. Padronização e confiabilidade
+Usar cuDNN/cuBLAS garante que a implementação de uma convolução ou multiplicação de matrizes siga padrões robustos e testados.
+
+Isso reduz bugs, melhora a precisão dos modelos e evita reinventar algoritmos matemáticos complexos.
+
+3. Integração com frameworks de IA
+Frameworks populares como TensorFlow, PyTorch, JAX, MXNet, entre outros, são construídos sobre cuDNN/cuBLAS.
+
+Isso permite que os desenvolvedores usem APIs de alto nível, enquanto se beneficiam do desempenho otimizado oferecido por essas bibliotecas.
+
+4. Suporte para operações de precisão mista
+cuDNN e cuBLAS têm suporte nativo para float16, TF32, BF16, entre outros formatos, otimizando o uso de mixed precision — essencial para IA moderna.
+
+
+
+| Biblioteca | Foco Principal        | Importância para IA                                    |
+| ---------- | --------------------- | ------------------------------------------------------ |
+| **cuDNN**  | Redes neurais         | Otimiza operações como convoluções, pooling, ativações |
+| **cuBLAS** | Álgebra linear básica | Essencial para multi                                   |

@@ -1,0 +1,6 @@
+| Camada            | Protocolo Exemplo | Função Principal                                                                                                                                 |
+| ----------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Aplicação**     | HTTP              | Interface para aplicações trocarem dados, define protocolos para comunicação direta entre programas (ex: web, email, transferência de arquivos). |
+| **Transporte**    | TCP               | Fornece comunicação fim-a-fim confiável, controle de fluxo, e controle de erros entre hosts.                                                     |
+| **Internet**      | IP                | Responsável pelo endereçamento e roteamento dos pacotes entre redes diferentes, determinando o caminho até o destino.                            |
+| **Acesso à Rede** | Ethernet          | Define os métodos para acesso físico à rede local, incluindo formatação dos frames e controle de acesso ao meio físico.                          |

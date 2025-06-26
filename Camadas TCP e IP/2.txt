@@ -1,0 +1,27 @@
+| **Camada TCP/IP**        | **O que acontece no encapsulamento**                                                                                                                                                         |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Aplicação**            | A mensagem de e-mail é criada, por exemplo, usando o protocolo SMTP. O dado da aplicação é o conteúdo da mensagem.                                                                           |
+| **Transporte**           | O TCP recebe a mensagem da aplicação e adiciona um **cabeçalho TCP** contendo informações como números de porta, controle de fluxo e verificação de erros, formando um segmento TCP.         |
+| **Internet**             | O segmento TCP é recebido pela camada IP, que adiciona um **cabeçalho IP** contendo endereços IP de origem e destino e informações de roteamento, formando um pacote IP.                     |
+| **Acesso à Rede (Link)** | O pacote IP é passado para a camada de enlace, por exemplo Ethernet, que adiciona um **cabeçalho e trailer Ethernet** com endereços MAC e código de verificação, formando um quadro (frame). |
+
+
+
+Mensagem de e-mail (dados da aplicação)
+   ↓
+[Adição do cabeçalho TCP] → Segmento TCP
+   ↓
+[Adição do cabeçalho IP] → Pacote IP
+   ↓
+[Adição do cabeçalho/trailer Ethernet] → Quadro Ethernet
+   ↓
+Transmissão física pelo meio (cabo, wireless, etc.)
+
+
+
+
+Organização e modularidade: Cada camada adiciona informações necessárias para sua função, sem se preocupar com as outras camadas.
+
+Comunicação eficaz: Permite que os dados sejam entregues corretamente e na ordem certa.
+
+Endereçamento e controle: Cabeçalhos contêm endereços, controle de fluxo, verificação de erros e outras informações essenciais.

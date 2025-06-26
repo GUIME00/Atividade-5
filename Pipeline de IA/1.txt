@@ -1,0 +1,76 @@
+1. Carregamento e Pré-processamento dos Dados   [CPU + Disco]
+2. Data Augmentation                            [CPU ou GPU*]
+3. Preparação dos Dados em Batches              [CPU]
+4. Envio dos Dados para a GPU                   [CPU → GPU]
+5. Forward Pass (Inferência)                    [ GPU ]
+6. Cálculo da Função de Perda                   [GPU]
+7. Backward Pass (Retropropagação dos Gradientes) [ GPU ]
+8. Atualização dos Pesos                        [ GPU ]
+9. Avaliação do Modelo no Conjunto de Validação [ GPU ]
+10. Métricas e Logging                          [CPU]
+
+
+
+1. Carregamento e Pré-processamento dos Dados
+Leitura das imagens do disco e conversão para tensores (por exemplo, usando PIL/OpenCV).
+
+GPU? Não. Etapa tipicamente limitada por E/S (I/O) e executada na CPU.
+
+2. Data Augmentation (opcionalmente na GPU)
+Transformações como rotação, corte, normalização, etc.
+
+Pode ser feita na CPU ou, em frameworks como TensorFlow ou Kornia, na GPU.
+
+GPU? Sim, se implementado com bibliotecas como Kornia, tf.image, ou DALI.
+
+3. Preparação dos Dados em Batches
+Agrupamento dos dados em lotes (batches) para paralelismo eficiente.
+
+GPU? Não. É feito na CPU, mas precisa ser rápido para não criar gargalos.
+
+4. Envio dos Dados para a GPU
+Transferência dos batches para a memória da GPU.
+
+GPU? Não acelera; pode ser gargalo se não for feito de forma assíncrona (pin_memory, DataLoader com múltiplos workers).
+
+5. Forward Pass
+A entrada passa pela rede (convoluções, ativações, pooling, etc.).
+
+GPU? Sim, aceleração massiva com cuDNN/cuBLAS/Tensor Cores.
+
+6. Cálculo da Função de Perda
+Comparação entre saída do modelo e os rótulos (por exemplo, CrossEntropyLoss).
+
+GPU? Sim, geralmente feita na GPU para evitar movimentação de dados.
+
+7. Backward Pass (Backpropagation)
+Cálculo dos gradientes de cada parâmetro.
+
+GPU? Sim, uma das etapas mais intensivas computacionalmente.
+
+8. Atualização dos Pesos
+Aplicação do otimizador (SGD, Adam, etc.) para atualizar os pesos da rede.
+
+GPU? Sim, especialmente com otimizadores otimizados para GPU.
+
+9. Avaliação do Modelo
+Aplicação do modelo no conjunto de validação/teste.
+
+Mesmas operações do forward pass, sem backpropagation.
+
+GPU? Sim, altamente paralelizável.
+
+10. Métricas e Logging
+Cálculo de métricas (acurácia, precisão, recall) e registro.
+
+GPU? Não, etapa leve executada na CPU.
+
+
+
+| Etapa                        | Aceleração com GPU |
+| ---------------------------- | ------------------ |
+| Forward Pass                 | Alta               |
+| Backward Pass                | Alta               |
+| Atualização de Pesos         | Alta               |
+| Avaliação do Modelo          | Alta               |
+| Data Augmentation (opcional) | Média-alta         |

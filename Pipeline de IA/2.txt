@@ -1,0 +1,31 @@
+1. Ajuda a prevenir overfitting
+Quando o modelo vê apenas um número limitado de imagens, pode memorizar os exemplos em vez de aprender padrões generalizáveis.
+
+Com data augmentation, o modelo é exposto a variações mais amplas dos dados, o que o força a aprender representações mais robustas.
+
+2. Simula variações do mundo real
+No mundo real, imagens podem ser tiradas de diferentes ângulos, com iluminação variada ou em diferentes escalas.
+
+Augmentações como rotação, zoom, brilho, ruído simulam essas condições e melhoram a generalização do modelo.
+
+3. Expande o conjunto de dados sem novos rótulos
+Criar datasets grandes e rotulados é caro.
+
+Data augmentation permite "aumentar" o dataset sem custo de anotação, multiplicando os exemplos disponíveis.
+
+
+| Tipo             | Exemplos                                                                 |
+| ---------------- | ------------------------------------------------------------------------ |
+| **Geométricas**  | Rotação, espelhamento horizontal, recorte, redimensionamento, translação |
+| **Fotométricas** | Alteração de brilho, contraste, saturação, adição de ruído               |
+| **Espaciais**    | Corte aleatório (`random crop`), preenchimento com padding               |
+| **Avançadas**    | Mixup, CutMix, Random Erasing, AugMix, AutoAugment                       |
+
+
+
+| Vantagem                       | Explicação                                                         |
+| ------------------------------ | ------------------------------------------------------------------ |
+| Melhora a generalização        | Exposição a mais variações ajuda o modelo a aprender padrões úteis |
+| Reduz o overfitting            | Menor chance de memorizar o dataset                                |
+| Aumenta dados sem custo extra  | Gera novos exemplos a partir de dados existentes                   |
+| Simula condições do mundo real | Torna o modelo mais robusto a mudanças externas                    |

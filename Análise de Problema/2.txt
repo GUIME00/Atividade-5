@@ -1,0 +1,25 @@
+A camada de aplicação lida com protocolos específicos usados para acessar sites, como HTTP/HTTPS.
+
+Se a conectividade básica (camadas inferiores — rede, transporte) está funcionando (pois outros sites carregam), isso indica que:
+
+A conexão física e o roteamento estão corretos (Camada de Acesso à Rede e Internet).
+
+A comunicação entre hosts (TCP na camada de Transporte) está funcionando para outros serviços.
+
+Portanto, o problema está mais ligado a:
+
+Servidor web do site específico fora do ar.
+
+Problemas no DNS para esse domínio (que é parte da camada aplicação).
+
+Configuração incorreta do servidor HTTP.
+
+Bloqueios no firewall da aplicação ou restrições de acesso (por exemplo, bloqueio do site no navegador ou por software antivírus).
+
+
+| Camada        | Probabilidade de problema | Motivo                                                      |
+| ------------- | ------------------------- | ----------------------------------------------------------- |
+| Aplicação     | Alta                      | Problemas no servidor web, DNS, protocolo HTTP/HTTPS        |
+| Transporte    | Baixa                     | Se TCP estivesse com problema, mais sites estariam afetados |
+| Internet      | Baixa                     | Roteamento e IP funcionando, pois outros sites acessam      |
+| Acesso à Rede | Baixa                     | Conexão física está ok, outros sites funcionam              |

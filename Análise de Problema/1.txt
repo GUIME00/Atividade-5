@@ -1,0 +1,45 @@
+Principal gargalo: GPU
+
+Treinamento de modelos de tradução automática (ex: Transformers) envolve operações matemáticas altamente paralelizáveis, como multiplicações de matrizes gigantes e operações tensoriais.
+
+Essas operações são intensivas em cálculo e são melhor aproveitadas pela GPU, que é especializada em computação paralela massiva.
+
+Se o treinamento está levando muitos dias, provavelmente o gargalo está na GPU sendo saturada, não sendo usada de forma eficiente, ou mesmo porque o modelo é muito grande e as operações são pesadas demais para o hardware disponível.
+
+A CPU normalmente não é o gargalo principal na parte computacional do treinamento; ela pode ser gargalo em pré-processamento ou carregamento de dados, mas o “coração” do treinamento roda na GPU.
+
+
+timizações na programação da GPU para acelerar o treinamento
+Uso de precisão mista (Mixed Precision)
+
+Usar tipos de dados de menor precisão (ex: float16 em vez de float32) para acelerar operações nos Tensor Cores, reduzindo uso de memória e aumentando throughput.
+
+Batch Size maior (se a memória permitir)
+
+Processar mais exemplos por iteração aproveita melhor a paralelização.
+
+Otimização do acesso à memória
+
+Alinhar e coalescer acessos à memória global da GPU.
+
+Uso eficiente de memória compartilhada (shared memory) para reduzir latência.
+
+Paralelismo e pipelines
+
+Overlap de transferência de dados CPU→GPU com cálculo (ex: streams CUDA).
+
+Uso de múltiplas GPUs com paralelismo de dados (Data Parallelism) ou modelo (Model Parallelism).
+
+Uso de bibliotecas otimizadas
+
+Utilizar cuBLAS, cuDNN, NVIDIA Apex (para mixed precision), e frameworks atualizados com suporte a aceleração.
+
+Profiling e análise
+
+Usar ferramentas como NVIDIA Nsight ou nvprof para identificar gargalos e ajustar kernels/custom kernels.
+
+
+| Componente | Por que é gargalo?                                                           |
+| ---------- | ---------------------------------------------------------------------------- |
+| **GPU**    | Execução intensiva de operações tensoriais; uso ineficiente pode atrasar     |
+| **CPU**    | Principalmente pré-processamento e I/O; menos provável ser gargalo principal |

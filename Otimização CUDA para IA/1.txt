@@ -1,0 +1,31 @@
+1. Coalescência de Acessos à Memória Global (Memory Coalescing)
+Descrição:
+Quando threads dentro de um warp (geralmente 32 threads) acessam endereços contíguos na memória global, o hardware da GPU pode agrupar esses acessos em uma única transação de memória, em vez de múltiplas transações separadas.
+
+Importância no treinamento de DNNs:
+As operações de treinamento envolvem muitos acessos a grandes tensores armazenados na memória global (por exemplo, pesos, gradientes, ativações). Se esses acessos forem desalinhados ou não contíguos, há um aumento no número de transações de memória, resultando em baixa largura de banda efetiva e aumento da latência.
+Ao organizar os dados e o mapeamento de threads de forma que os acessos sejam coalescidos, obtém-se uma redução significativa no tempo de acesso à memória, melhorando a performance do treinamento.
+
+2. Uso Eficiente da Memória Compartilhada (Shared Memory)
+Descrição:
+A memória compartilhada é uma região de memória de baixa latência que pode ser usada por todos os threads de um bloco. É muito mais rápida do que a memória global.
+
+Importância no treinamento de DNNs:
+Durante operações como multiplicações de matrizes (por exemplo, no cálculo das ativações ou do gradiente), o mesmo bloco de dados pode ser reutilizado por diferentes threads. Ao carregar esses dados na memória compartilhada uma única vez, é possível evitar acessos repetidos à memória global, reduzindo o tempo total de execução.
+Isso é especialmente útil em operações como convoluções ou multiplicaçōes matriciais em camadas densas (fully connected layers), onde blocos de threads realizam cálculos cooperativos sobre submatrizes.
+
+3. Uso de Memória de Textura ou Memória Constante (Texture/Constant Memory)
+Descrição:
+
+Memória constante é uma região de memória somente leitura e otimizada para acesso uniforme entre threads.
+
+Memória de textura também é somente leitura e possui cache otimizado para acessos com padrões de localidade espacial.
+
+Importância no treinamento de DNNs:
+Durante o forward pass ou a retropropagação, certos dados, como hiperparâmetros, índices ou mesmo pesos raramente alterados, podem ser acessados por múltiplos threads com alta frequência. Colocar esses dados em memória constante ou de textura reduz a pressão sobre a memória global e melhora o desempenho de acesso devido ao cache otimizado.
+
+Por exemplo:
+
+Pesos fixos durante uma inferência podem ser armazenados em memória de textura.
+
+Hiperparâmetros (como a taxa de aprendizado) podem ser armazenados em memória constante.
